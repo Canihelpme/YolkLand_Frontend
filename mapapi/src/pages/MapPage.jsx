@@ -10,7 +10,7 @@ const { kakao } = window;
 
 
 
-//모달창 노출시키기!
+//모달창 노출시키기!!!
 export const MapPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
