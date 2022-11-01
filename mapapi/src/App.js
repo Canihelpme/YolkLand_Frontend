@@ -4,12 +4,27 @@ import MapPage from '../src/pages/MapPage';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import DetailPage from '../src/pages/DetailPage'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import PhotoList from './components/photo_list/photo_list';
 
 //import { DetailPage } from '../src/pages'
 
 
 function App() {
+  const [photos, setPhotos] = useState([]);
+
+  useEffect(()=> {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    fetch("https://jsonplaceholder.typicode.com/posts", requestOptions)
+    .then(response => response.json())
+    .then(result => setPhotos(result))
+    .catch(error => console.log('error'.error))
+  }, [])
+
 
 
 
@@ -39,11 +54,14 @@ function App() {
       
       <Routes>
         <Route path="/" element={<div ><MapPage/></div>} />
-
         <Route path="/DetailPage" element={<div ><DetailPage/></div>} />
+        <PhotoList photos={photos} />
        </Routes>
 
+
+
     </div>
+
 
     
 
