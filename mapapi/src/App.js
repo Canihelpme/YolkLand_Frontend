@@ -54,6 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<div ><MapPage/></div>} />
         <Route path="/DetailPage" element={<div ><DetailPage/></div>} />
+        <Route path="*" element={<div ><h1>없는 페이지입니다.</h1></div>} />
        </Routes>
 
 
