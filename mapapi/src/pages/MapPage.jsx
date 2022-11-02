@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { markerdata } from "../data/markerData"
 import { Button } from 'react-bootstrap';
-
+import Detailpage from './DetailPage';
 //import { Link } from "react-router-dom";
 
 

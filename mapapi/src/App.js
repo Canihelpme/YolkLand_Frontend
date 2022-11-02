@@ -54,7 +54,6 @@ function App() {
       <Routes>
         <Route path="/" element={<div ><MapPage/></div>} />
         <Route path="/DetailPage" element={<div ><DetailPage/></div>} />
-        <PhotoList photos={photos} />
        </Routes>
 
 
