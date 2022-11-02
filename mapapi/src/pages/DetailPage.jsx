@@ -1,3 +1,5 @@
+import React from 'react';
+import Users from '../Users/Users'
 export const DetailPage = () => {
 
 

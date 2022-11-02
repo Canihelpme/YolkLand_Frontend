@@ -5,7 +5,6 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import DetailPage from '../src/pages/DetailPage'
 import { useEffect, useState } from 'react';
-import PhotoList from './components/photo_list/photo_list';
 
 //import { DetailPage } from '../src/pages'
 
