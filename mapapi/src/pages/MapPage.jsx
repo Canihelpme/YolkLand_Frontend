@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { markerdata } from "../data/markerData"
 //import { chicken } from "../data/chicken.json"
 import { Button } from 'react-bootstrap';
+
+import Detailpage from './DetailPage';
 //import $ from 'jquery';
 //import ch from '../data/chicken.json';
-import Detailpage from './DetailPage';
 //import { Link } from "react-router-dom";
 
 const { kakao } = window;
