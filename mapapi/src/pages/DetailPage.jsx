@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
+import { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import  markerdata  from "../data/markerData";
-
+import Areas from '../Users/Areas'
 
 export const DetailPage = (props) => {
   let {id} = useParams();
@@ -60,9 +61,9 @@ export const DetailPage = (props) => {
 									</div>
 								</li>
 
-                <li className="response">
-                  <Users/>
-                </li>
+                <div className="response">
+                  <Areas />
+                </div>
 							</ul>
 
       </div>
