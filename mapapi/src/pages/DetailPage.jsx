@@ -6,9 +6,6 @@ import  markerdata  from "../data/markerData";
 export const DetailPage = (props) => {
   let {id} = useParams();
   console.log(id);
- 
-
-
 
     return(
 <div>
@@ -36,35 +33,36 @@ export const DetailPage = (props) => {
             </dl>
           </div>
       <div>
-      <ul class="list_reportItem">
-								<li class="summary">가구세대 수 <strong>6,503가구</strong> 입니다.</li>
+      <ul className="list_reportItem">
+								<li className="summary">가구세대 수 <strong>6,503가구</strong> 입니다.</li>
 
-								<li class="contrast">
+								<li className="contrast">
 									<p>
 										<span>전년 동분기 대비</span>
-										<strong class="" >0가구</strong>
+										<strong className="" >0가구</strong>
 									</p>
 									
 									<p>
 										<span>전분기 대비</span>
-										<strong class="">0가구</strong>
+										<strong className="">0가구</strong>
 									</p>
 								</li>
 							
-								<li class="detail"><strong>성수1가2동</strong>은 가구세대가 전년대비 <strong>동일</strong>하고, 아파트가구가 일반가구보다 (%P3)습니다.   </li>
+								<li className="detail"><strong>성수1가2동</strong>은 가구세대가 전년대비 <strong>동일</strong>하고, 아파트가구가 일반가구보다 (%P3)습니다.   </li>
 							
-								<li class="graph">
+								<li className="graph">
 								
-									<div class="chartArea" >
+									<div className="chartArea" >
 										
-										<p class="title">가구세대 수 추이</p>
+										<p className="title">가구세대 수 추이</p>
 									
-										<span class="unit">단위 : 가구</span>
-								
-										
+										<span className="unit">단위 : 가구</span>
 									</div>
-								
 								</li>
+
+                <li className="response">
+                  <Users/>
+                </li>
 							</ul>
 
       </div>
