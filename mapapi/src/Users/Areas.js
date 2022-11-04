@@ -10,18 +10,19 @@ function Areas() {
      
     // const res = fetchUsers(2110824);
     // setareas(res.data)
-    fetchUsers(2110824).then(result=>setareas(result.data.data))
+    fetchAreas(2110824).then(result=>setareas(result.data.data))
     
   }, []);
 
-  const fetchUsers = async (code) => {
-      return await axios.get(`http://localhost:8080/api/apt?code=${code}`)
+  const fetchAreas = async (code) => {
+      return await axios.get(`http://1027-alb-1456013350.ap-northeast-2.elb.amazonaws.com/api/apt/${code}`)
       }
-  
+
   return (
     <div>
-      {areas.map((data)=><div>{[data.year+"년 ",data.quarter+"분기"]}</div>)}
-    </div>
+      {areas.map((data)=><div>{[data.year+"년 ",data.quarter+"분기", data.con,]}</div>)}
+
+      </div>
 
   );
 }

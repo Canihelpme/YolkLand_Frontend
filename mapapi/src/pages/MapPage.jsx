@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import  markerdata  from "../data/markerData";
 //import { chicken } from "../data/chicken.json"
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
 
 import Detailpage from './DetailPage';
 //import $ from 'jquery';
@@ -17,12 +18,20 @@ export const MapPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [detaildata] = useState(markerdata);
 
- 
+  const [careas, setcareas] = useState([]);
 
   
-
-
+  const fetchCAreas = async (code) => {
+    return await axios.get(`http://1027-alb-1456013350.ap-northeast-2.elb.amazonaws.com/api/area/`)
+    }
+    
+  
   useEffect(() => {
+    
+    fetchCAreas(2110824).then(result=>{
+      setcareas(result.data.data)
+      console.log(result.data.data)
+    })
 
     const container = document.getElementById('map');
     const options = {
@@ -30,7 +39,7 @@ export const MapPage = () => {
       level: 6
     };
 
-    const areas = [
+    const coordinate = [
       {
           name : '강남구 좌표',
           path : [
@@ -84,7 +93,7 @@ export const MapPage = () => {
 
     //마커 이미지
     const imageSrc = 'NDS4.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(60, 60), // 마커이미지의 크기입니다
+    imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(27, 69)};
     
 
@@ -109,14 +118,14 @@ export const MapPage = () => {
     const clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-      minLevel: 7 // 클러스터 할 최소 지도 레벨
+      minLevel: 6 // 클러스터 할 최소 지도 레벨
 });
 
 
 const markers = []; //마커 크러스터
 
 
-    markerdata.map((el, i) => {
+careas.map((el) => {
        
       // 마커를 생성합니다
       const marker = new kakao.maps.Marker({
@@ -124,36 +133,40 @@ const markers = []; //마커 크러스터
         //마커가 표시 될 지도
         map: map,
         //마커가 표시 될 위치
-        position: new kakao.maps.LatLng(el.lat, el.lng),
+        position: new kakao.maps.LatLng(el.latitude, el.longitude),
         image : markerImage
       });
       // 마커에 표시할 인포윈도우를 생성합니다
       var InfoWindow = new kakao.maps.InfoWindow({
-        content: el.place,
+        content: el.codeName,
       });
 
       //투명도 조절
       marker.setOpacity(0.45);
 
-      // 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+      // 마커에 클 이벤릭트를 등록한다 (우클릭 : rightclick)
       kakao.maps.event.addListener(marker, 'click', function () {
         console.log(marker)
 
-        const iwContent = '<div className="overlaybox" style="padding:5px; height:55px;">' + el.place + '<br> <a href="/DetailPage/' + el.seq + '"' + 'style="color:blue" target="_blank">상세보기</a> '+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+        const iwContent = '<div className="overlaybox" style="padding:5px; height:55px;">' + el.codeName + '<br> <a href="/DetailPage/' + el.id + '"' + 'style="color:blue" target="_blank">상세보기</a> '+'</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+         
+        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시
 
-        // 인포윈도우를 생성하고 지도에 표시합니다
+        // 인포윈도우를 생성하고 지도에 표시
         const InfoWindow = new kakao.maps.InfoWindow({
           content: iwContent,
           removable: iwRemoveable,
          
         });
+
+
         InfoWindow.open(map, marker);
-        
 
         
       });      
       markers.push(marker); //마커 크러스터
+      
+      
 
       // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
       // 이벤트 리스너로는 클로저를 만들어 등록합니다
@@ -184,11 +197,13 @@ const markers = []; //마커 크러스터
       return function () {
         InfoWindow.close();
       };
+
+      
     }
 
     // 지도에 영역데이터를 폴리곤으로 표시합니다 
-for (var i = 0, len = areas.length; i < len; i++) {
-  displayArea(areas[i]);
+for (var i = 0, len = coordinate.length; i < len; i++) {
+  displayArea(coordinate[i]);
 }
 
 // 다각형을 생상하고 이벤트를 등록하는 함수
@@ -207,6 +222,7 @@ function displayArea(area) {
 
   },[]);
 
+
   return (
     <div>
       <input type="text" className="form-control" id="keyword" placeholder="키워드"></input>
@@ -222,10 +238,10 @@ function displayArea(area) {
         <div className="inner">
           <div className="category-container">
             <div className="category-list">
-              <button className="category-item" id="korea">추출</button>
-              <button className="category-item" id="china">매출</button>
-              <button className="category-item" id="japan">인구</button>
-              <button className="category-item" id="america">지역</button>
+              <button className="category-item" id="korea">관광특구</button>
+              <button className="category-item" id="china">골목상권</button>
+              <button className="category-item" id="japan">발달상권</button>
+              <button className="category-item" id="america">전통시장</button>
 
             </div>
           </div>

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import  markerdata  from "../data/markerData";
 import Areas from '../Users/Areas'
+import CAreas from '../Users/CAreas'
 
 export const DetailPage = (props) => {
   let {id} = useParams();
@@ -10,10 +11,7 @@ export const DetailPage = (props) => {
 
     return(
 <div>
-      <div>
-
-      <button className="btn btn-danger">주문하기</button>
-    </div>
+      
 
         <div className="container">
         <div className="row">
@@ -21,8 +19,8 @@ export const DetailPage = (props) => {
           <div>
             <dl>
                 <dt>{props.detaildata[id].place}</dt>
-                <dd>전화번호 : {props.detaildata[id].phone}</dd>
-                <dd>한줄후기 : {props.detaildata[id].content}</dd>
+                <dd>상권 : {props.detaildata[id].code_name}</dd>
+                
             </dl>
             <dl>
                 <dt>업종</dt>
@@ -63,6 +61,7 @@ export const DetailPage = (props) => {
 
                 <div className="response">
                   <Areas />
+                  <CAreas />
                 </div>
 							</ul>
 
