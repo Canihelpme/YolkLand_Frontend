@@ -1,7 +1,8 @@
 import React from 'react';
-import Users from '../Users/Users'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import Areas from '../Users/Areas'
 export const DetailPage = () => {
-
 
     return(
 
@@ -50,9 +51,9 @@ export const DetailPage = () => {
 									</div>
 								</li>
 
-                <li className="response">
-                  <Users/>
-                </li>
+                <div className="response">
+                  <Areas />
+                </div>
 							</ul>
 
       </div>
