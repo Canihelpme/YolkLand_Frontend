@@ -1,15 +1,30 @@
-export const DetailPage = () => {
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import  markerdata  from "../data/markerData";
+
+
+export const DetailPage = (props) => {
+  let {id} = useParams();
+  console.log(id);
+ 
+
 
 
     return(
+<div>
+      <div>
+
+      <button className="btn btn-danger">주문하기</button>
+    </div>
 
         <div className="container">
         <div className="row">
           <div className="col-md-6">
           <div>
             <dl>
-                <dt>위치</dt>
-                <dd>성수동 1가 2동</dd>
+                <dt>{props.detaildata[id].place}</dt>
+                <dd>전화번호 : {props.detaildata[id].phone}</dd>
+                <dd>한줄후기 : {props.detaildata[id].content}</dd>
             </dl>
             <dl>
                 <dt>업종</dt>
@@ -57,7 +72,7 @@ export const DetailPage = () => {
           </div>
         </div>
       </div>
-       
+       </div>
     )
 };
 
