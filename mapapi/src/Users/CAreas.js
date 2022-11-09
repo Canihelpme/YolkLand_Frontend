@@ -10,7 +10,7 @@ function CAreas() {
      
     // const res = fetchUsers(2110824);
     // setareas(res.data)
-    fetchCAreas(2110824).then(result=>setcareas(result.data.data))
+    fetchCAreas().then(result=>setcareas(result.data.data))
     
   }, []);
 
@@ -21,6 +21,7 @@ function CAreas() {
   return (
     <div>
       {careas.map((data)=><div>{[data.cadName, data.codeName, data.longitude, data.latitude, data.code]}</div>)}
+      
 
       </div>
 

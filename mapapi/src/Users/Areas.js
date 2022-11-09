@@ -10,7 +10,8 @@ function Areas() {
      
     // const res = fetchUsers(2110824);
     // setareas(res.data)
-    fetchAreas(2110824).then(result=>setareas(result.data.data))
+    fetchAreas().then(result=>setareas(result.data.data))
+
     
   }, []);
 
